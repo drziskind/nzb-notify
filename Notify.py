@@ -684,10 +684,11 @@ class NotifyScript(PostProcessScript, QueueScript):
                 if val >= 1024.0:
                     val = val/1024.0
                     unit = 'TB'
+                md5sum = meta['md5']
 
                 files_downloaded.append(
-                    ' * ' + _file[len(self.directory)+1:] + ' (%.2f %s)' % (
-                        val, unit
+                    ' * ' + _file[len(self.directory)+1:] + ' (%.2f %s) %s' % (
+                        val, unit, md5sum
                 ))
 
             if files_downloaded:

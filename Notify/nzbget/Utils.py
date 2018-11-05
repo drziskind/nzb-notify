@@ -15,6 +15,7 @@
 # GNU Lesser General Public License for more details.
 #
 import re
+import hashlib
 from os.path import expanduser
 
 try:
@@ -113,3 +114,11 @@ def unescape_xml(content):
     if SAX_UNESCAPE:
         return unescape(content)
     return HTMLParser().unescape(content)
+
+def md5(fname):
+    hash_md5 = hashlib.md5()
+    with open(fname, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_md5.update(chunk)
+
+    return hash_md5.hexdigest()

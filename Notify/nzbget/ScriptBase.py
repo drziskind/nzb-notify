@@ -230,6 +230,7 @@ from stat import ST_ATIME
 from stat import ST_CTIME
 from stat import ST_MTIME
 from stat import ST_SIZE
+from .Utils import md5
 
 from os import stat
 
@@ -2874,6 +2875,7 @@ class ScriptBase(object):
                         datetime(1980, 1, 1, 0, 0, 0, 0)
 
                 _file[search_dir]['filesize'] = stat_obj[ST_SIZE]
+                _file[search_dir]['md5'] = md5(search_dir)
             return _file
 
         elif not isdir(search_dir):
@@ -3024,6 +3026,7 @@ class ScriptBase(object):
                             datetime(1980, 1, 1, 0, 0, 0, 0)
 
                 files[fullpath]['filesize'] = stat_obj[ST_SIZE]
+                files[fullpath]['md5'] = md5(fullpath)
         # Return all files
         return files
 
