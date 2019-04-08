@@ -3026,7 +3026,12 @@ class ScriptBase(object):
                             datetime(1980, 1, 1, 0, 0, 0, 0)
 
                 files[fullpath]['filesize'] = stat_obj[ST_SIZE]
-                files[fullpath]['md5'] = md5(fullpath)
+                if (datetime.now()-files[fullpath]['created']).seconds < 60:
+                    files[fullpath]['md5'] = md5(fullpath)
+                
+                else:
+                    files[fullpath]['md5'] = ""
+        
         # Return all files
         return files
 
