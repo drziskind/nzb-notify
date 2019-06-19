@@ -3026,7 +3026,7 @@ class ScriptBase(object):
                             datetime(1980, 1, 1, 0, 0, 0, 0)
 
                 files[fullpath]['filesize'] = stat_obj[ST_SIZE]
-                if (datetime.now()-files[fullpath]['created']).seconds < 60:
+                if (datetime.now()-files[fullpath]['created']).seconds < 60 and "/pdata/" not in files[fullpath]['dirname']:
                     files[fullpath]['md5'] = md5(fullpath)
                 
                 else:
